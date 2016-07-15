@@ -1,0 +1,19 @@
+{
+  "name": "asem51",
+  "version": "1.0.0",
+  "description": "Node.js wrapper for ASEM-51",
+  "bin": "bin/asem",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "8051",
+    "asem-51",
+    "asm"
+  ],
+  "author": "Equan Pr.",
+  "license": "MIT",
+  "dependencies": {
+    "minimist": "^1.2.0"
+  }
+}
