@@ -2,3 +2,6 @@
 node_modules
 .git
 *.log
+*.a51
+*.lst
+*.hex
