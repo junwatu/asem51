@@ -1,10 +1,15 @@
 {
   "name": "asem51",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Node.js wrapper for ASEM-51",
-  "bin": "bin/asem",
+  "bin": {
+    "asem51": "./bin/asem"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/junwatu/asem51/issues"
   },
   "keywords": [
     "8051",
@@ -15,5 +20,9 @@
   "license": "MIT",
   "dependencies": {
     "minimist": "^1.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/junwatu/asem51.git"
   }
 }

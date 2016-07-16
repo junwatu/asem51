@@ -4,6 +4,7 @@
 
 const spawn = require('child_process').spawn;
 const argv = require('minimist')(process.argv.slice(2));
+const ASEM51 = require('../lib/asem51');
 
 let errMessageArray = [];
 let file = argv['_'][0];
@@ -16,47 +17,11 @@ if (file != undefined) {
         console.log(data);
     });
     asem.stderr.on('data', (data) => {
-        console.log(parseError(data.toString()));
+        console.log(ASEM51.parseError(file, data.toString()));
     });
 } else {
     let asem = spawn('asem');
     asem.on('error', err => console.log(err));
     asem.stdout.on('data', data => console.log(data.toString()));
     asem.stderr.on('data', data => console.log(data.toString()));
-}
-
-let parseError = (stderr) => {
-    let errAllArray = stderr.split('\n').filter(n => n != '');
-    let isError = errAllArray[0].split(' ').filter(n => n == '@@@@@');
-    
-    if (isError.length > 1) {
-        errMessageArray.push({ "error": stderr });
-    } else {
-        errAllArray.forEach((element, index, array) => parseErrorElement(element, errMessageArray));
-    }
-    return errMessageArray;
-}
-
-let parseErrorElement = (err, errMessageArray) => {
-    let errAll = err.split(':');
-    let errMessage = errAll[1];
-    
-    /**
-     * Parse error message with RegEx
-     * ex: (1,10) to ['1', '10] 
-     */
-    if (errAll[1]) {
-        let lineCols = errAll[0].match(/\((.*)\)/)[1];
-        let lineCol = lineCols.split(",");
-        let errMessageObj = {};
-
-        errMessageObj.file = file;
-        errMessageObj.line = lineCol[0];
-        errMessageObj.column = lineCol[1];
-        errMessageObj.message = errMessage;
-        errMessageArray.push(errMessageObj);
-    } else {
-        errMessageArray.push({ "error": err });
-    }
-    return errMessageArray;
 }
