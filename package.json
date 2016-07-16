@@ -16,6 +16,9 @@
     "asem-51",
     "asm"
   ],
+  "engines": {
+    "node": ">=6.0.0"
+  },
   "author": "Equan Pr.",
   "license": "MIT",
   "dependencies": {
