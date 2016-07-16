@@ -2,7 +2,6 @@
 
 'use strict';
 
-const spawn = require('child_process').spawn;
 const argv = require('minimist')(process.argv.slice(2));
 const ASEM51 = require('../lib/asem51');
 
