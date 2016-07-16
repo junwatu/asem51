@@ -6,22 +6,31 @@ const spawn = require('child_process').spawn;
 const argv = require('minimist')(process.argv.slice(2));
 const ASEM51 = require('../lib/asem51');
 
-let errMessageArray = [];
-let file = argv['_'][0];
+let asyncAsem = (argv) => {
 
-if (file != undefined) {
-    let asem = spawn('asem', ['--columns', file]);
+    let file = argv['_'][0];
 
-    asem.on('error', err => console.log(err));
-    asem.stdout.on('data', (data) => {
-        console.log(data);
-    });
-    asem.stderr.on('data', (data) => {
-        console.log(ASEM51.parseError(file, data.toString()));
-    });
-} else {
-    let asem = spawn('asem');
-    asem.on('error', err => console.log(err));
-    asem.stdout.on('data', data => console.log(data.toString()));
-    asem.stderr.on('data', data => console.log(data.toString()));
+    return new Promise((resolve, reject) => {
+
+        if (file != undefined) {
+            let asem = spawn('asem', ['--columns', file]);
+
+            asem.on('error', err => reject(err));
+            asem.stdout.on('data', (data) => {
+                resolve(data);
+            });
+            asem.stderr.on('data', (data) => {
+                resolve(ASEM51.parseError(file, data.toString()));
+            });
+        } else {
+            let asem = spawn('asem');
+            asem.on('error', err => reject(err));
+            asem.stdout.on('data', data => resolve(data.toString()));
+            asem.stderr.on('data', data => resolve(data.toString()));
+        }
+    })
 }
+
+asyncAsem(argv)
+.then(data => console.log(data))
+.catch(err => console.log(err));
