@@ -6,7 +6,7 @@
     "asem51": "./bin/asem"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "bugs": {
     "url": "https://github.com/junwatu/asem51/issues"
@@ -27,5 +27,8 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/junwatu/asem51.git"
+  },
+  "devDependencies": {
+    "mocha": "^2.5.3"
   }
 }
