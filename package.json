@@ -6,7 +6,7 @@
     "asem51": "./bin/asem"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --compilers js:babel-core/register"
   },
   "bugs": {
     "url": "https://github.com/junwatu/asem51/issues"
@@ -29,6 +29,8 @@
     "url": "git://github.com/junwatu/asem51.git"
   },
   "devDependencies": {
+    "babel-core": "^6.10.4",
+    "babel-preset-es2015": "^6.9.0",
     "mocha": "^2.5.3"
   }
 }
