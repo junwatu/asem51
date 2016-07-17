@@ -2,9 +2,8 @@
 
 'use strict';
 
-const argv = require('minimist')(process.argv.slice(2));
 const ASEM51 = require('../lib/asem51');
 
-ASEM51.asyncAsem(argv)
+ASEM51.asyncAsem(process.argv)
 .then(data => console.log(data))
 .catch(err => console.log(err));
