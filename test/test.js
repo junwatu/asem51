@@ -3,7 +3,7 @@
 import ASEM51 from '../lib/asem51';
 import assert from 'assert';
 
-const args = [null, null, '-o', '-v', 'test/main.a51'];
+const args = [null, null, '-o', '--verbose','--define=ARCH:0', 'test/main.a51'];
 const errExpected = [
     { file: 'test/main.a51', line: '1', column: '6', message: 'illegal operand' },
     { file: 'test/main.a51', line: '2', column: '10', message: 'no END statement found' }
