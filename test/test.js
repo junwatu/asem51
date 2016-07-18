@@ -14,7 +14,7 @@ describe('Args Test', () => {
     it('Boolean', () => {
         ASEM51.asyncAsem(args)
             .then(data => { 
-                console.log(data)
+                //console.log(data)
                 assert.equal(data[1][0].file, errExpected[0].file);
                 assert.equal(data[1][1].column, errExpected[1].column); 
             })
