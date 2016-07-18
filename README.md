@@ -1,5 +1,7 @@
 #ASEM51
 
+[![Build Status](https://travis-ci.org/junwatu/asem51.svg?branch=master)](https://travis-ci.org/junwatu/asem51)
+
 This is a node.js wrapper for [asem-51](http://plit.de/asem-51)
 
 ##Install
